@@ -316,11 +316,11 @@ Edson
 Papo
 Yerson
 Diego
-kevin
+Evans
 Johan
 Jona
 Mateo
-Evan</textarea>
+Kevin</textarea>
 
     <div class="divider"></div>
 
@@ -345,7 +345,7 @@ Evan</textarea>
 const COPY_DEFAULT_HTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar resultado';
 
 const DEFAULT_PEOPLE=['Junior','Daniel','Edson','Papo','Yerson','Diego','Evans','Francisco','Jona','Mateo','Evan'];
-let allNums=Array.from({length:31},(_,i)=>i+1);
+let allNums=Array.from({length:50},(_,i)=>i+1);
 let usedNums=new Set();
 let people=[];
 let assignments={};
@@ -376,11 +376,10 @@ function drawWheel(hi){
     ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,s,e);ctx.closePath();
     ctx.fillStyle=hi===i?'#E4C77E':COLS[i%COLS.length];ctx.fill();
     ctx.strokeStyle='rgba(255,255,255,.3)';ctx.lineWidth=1;ctx.stroke();
-    if(pool.length<=40){
-      ctx.save();ctx.translate(cx,cy);ctx.rotate(s+sl/2);
-      ctx.textAlign='right';ctx.fillStyle='#fff';ctx.font='bold 11px Inter, sans-serif';
-      ctx.fillText(n,r-5,4);ctx.restore();
-    }
+    const fs=pool.length<=40?11:(pool.length<=70?9:7);
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(s+sl/2);
+    ctx.textAlign='right';ctx.fillStyle='#fff';ctx.font='bold '+fs+'px Inter, sans-serif';
+    ctx.fillText(n,r-5,4);ctx.restore();
   });
   ctx.beginPath();ctx.arc(cx,cy,14,0,2*Math.PI);
   ctx.fillStyle='#FBF6EA';ctx.fill();
